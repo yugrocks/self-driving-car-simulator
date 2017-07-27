@@ -7,4 +7,5 @@ It uses a Convolutional Neural Network to predict the motion of the steering giv
 
 # The Model:    
 
-![alt tag](https://raw.githubusercontent.com/yugrocks/self-driving-car-simulator/master/model.png)
+![alt tag](https://raw.githubusercontent.com/yugrocks/self-driving-car-simulator/master/model.png)    
+
