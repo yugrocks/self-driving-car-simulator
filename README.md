@@ -3,7 +3,7 @@ The core technology behind Self Driving Cars today. Given the image of a road at
 It uses a Convolutional Neural Network to predict the motion of the steering given the image of a road at a time.    
 ## However, some cool errors can be clearly seen with the current model in the demo.    
 
-![alt tag](https://raw.githubusercontent.com/yugrocks/self-driving-car-simulator/master/Demo.gif)    
+![alt tag](https://raw.githubusercontent.com/yugrocks/self-driving-car-simulator/master/demo.gif)      
 
 # The Model:    
 
