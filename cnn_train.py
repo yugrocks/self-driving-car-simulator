@@ -35,17 +35,19 @@ def get_model():
     model.add(MaxPooling2D(pool_size=(2,2)))
     
     
-    #model.add(Dropout(0.25)) #to reduce overfitting
+    
+    model.add(Dropout(0.25)) #to reduce overfitting
     
     model.add(Flatten())
     
-    #Now two hidden(dense) layers:
-    model.add(Dense(output_dim = 256, activation = 'relu',
+    #Now one hidden(dense) layer:
+    model.add(Dense(output_dim = 500, activation = 'relu',
                     kernel_regularizer=regularizers.l2(0.01)
                    ))
     
     
-    model.add(Dropout(0.20))#again for regularization
+    
+    model.add(Dropout(0.25))#again for regularization
     
     #output layer
     model.add(Dense(output_dim = 7, activation = 'softmax'))
@@ -95,7 +97,7 @@ def train_CNN():
     #start training:
     history = model.fit_generator(training_set,
                          samples_per_epoch = 18676,
-                         nb_epoch = 5,
+                         nb_epoch = 10,
                          validation_data = test_set,
                          nb_val_samples =4652)
 
@@ -107,10 +109,11 @@ input("Press enter to start training the model. Make sure the dataset is ready, 
 history, model = train_CNN()
     
 #accuracies over 10 epochs:
-    #train acc: 87.4665%
-    #test acc : 86.5039%
+    #train acc: 96.4665%
+    #test acc : 88.5039%
+    #Overfit? No. The test set was shit.
 
-dec = str(input("Save weights, y/n?"))
+dec = str(input("Save model and weights, y/n?"))
 
 if dec.lower() == 'y':
     #saving the weights
@@ -121,17 +124,17 @@ if dec.lower() == 'y':
         model_file.write(model_json)
     print("Model has been saved.")
     
+    
+#save the model schema
+plot_model(model, to_file='model.png', show_shapes = True)
+
 
 #check the model on a random image in test set
 img = load_img('Dataset\\test_set\\e\\2.jpg',target_size=(33,50))
 x=array(img)
-img = cv2.cvtColor( x, cv2.COLOR_BGR2RGB )
-img=img.reshape((1,)+img.shape)
+img = cv2.cvtColor( x, cv2.COLOR_RGB2GRAY )
+img=img.reshape((1,)+img.shape+(1,))
 
 test_datagen = ImageDataGenerator(rescale=1./255)
 m=test_datagen.flow(img,batch_size=1)
 y_pred=model.predict_generator(m,1)
-
-#save the model schema
-plot_model(model, to_file='model.png', show_shapes = True)
-
