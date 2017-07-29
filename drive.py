@@ -3,7 +3,7 @@ from keras.models import model_from_json
 from functools import partial
 from simulator_gui import Screen
 import threading
-
+from time import sleep
 
 #specifying image dimensions
 img_rows=33
@@ -43,12 +43,13 @@ def start_simulation(path, screen):
         rval=False
 
     while rval:
+        sleep(0.001)
         rval, img = vc.read()
         if path==0:
             img=cv2.flip(img,1)
         
         
-        #img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         screen.display(img)  #display the frame on screen
         img = cv2.cvtColor( img, cv2.COLOR_RGB2GRAY )
         img = cv2.resize(img, (img_colms, img_rows), interpolation = cv2.INTER_AREA)
