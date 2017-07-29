@@ -35,41 +35,25 @@ def get_model():
     model.add(MaxPooling2D(pool_size=(2,2)))
     
     
-    
-    model.add(Dropout(0.5)) #to reduce overfitting
+    #model.add(Dropout(0.25)) #to reduce overfitting
     
     model.add(Flatten())
     
     #Now two hidden(dense) layers:
     model.add(Dense(output_dim = 256, activation = 'relu',
-                    kernel_regularizer=regularizers.l2(0.02)
+                    kernel_regularizer=regularizers.l2(0.01)
                    ))
     
-    model.add(Dropout(0.5))#again for regularization
     
-    model.add(Dense(output_dim = 128, activation = 'relu',
-                    kernel_regularizer=regularizers.l2(0.02)
-                    ))
-    
-    
-    model.add(Dropout(0.5))#last one lol
-    
-    """model.add(Dense(output_dim = 500, activation = 'relu',
-                    kernel_regularizer=regularizers.l2(0.02)
-                    ))
-    
-    model.add(Dense(output_dim = 128, activation = 'relu',
-                    kernel_regularizer=regularizers.l2(0.01)
-                    ))
-    model.add(Dropout(0.5))"""
+    model.add(Dropout(0.20))#again for regularization
     
     #output layer
     model.add(Dense(output_dim = 7, activation = 'softmax'))
     
-    lr = 0.001
+    lr = 0.0001
     sgd = SGD(lr=lr, decay=1e-6, momentum=0.9, nesterov=True) #custom learning rate, with rate decay enabled
     #Now copile it
-    model.compile(optimizer=sgd, loss='categorical_crossentropy', metrics=['accuracy'])
+    model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
     model.summary() #get summary
     return model
     
@@ -111,7 +95,7 @@ def train_CNN():
     #start training:
     history = model.fit_generator(training_set,
                          samples_per_epoch = 18676,
-                         nb_epoch = 13,
+                         nb_epoch = 5,
                          validation_data = test_set,
                          nb_val_samples =4652)
 
@@ -122,18 +106,18 @@ def train_CNN():
 input("Press enter to start training the model. Make sure the dataset is ready, and all files and folders are in place.")
 history, model = train_CNN()
     
-#accuracies over 13 epochs:
-    #train acc: 75.2443%
-    #test acc : 84.5039%
+#accuracies over 10 epochs:
+    #train acc: 87.4665%
+    #test acc : 86.5039%
 
 dec = str(input("Save weights, y/n?"))
 
 if dec.lower() == 'y':
     #saving the weights
-    model.save_weights("weights2.hdf5",overwrite=True)
+    model.save_weights("weights4.hdf5",overwrite=True)
     #saving the model itself in json format:
     model_json = model.to_json()
-    with open("model2.json", "w") as model_file:
+    with open("model4.json", "w") as model_file:
         model_file.write(model_json)
     print("Model has been saved.")
     
@@ -141,9 +125,9 @@ if dec.lower() == 'y':
 #check the model on a random image in test set
 img = load_img('Dataset\\test_set\\e\\2.jpg',target_size=(33,50))
 x=array(img)
-img = cv2.cvtColor( x, cv2.COLOR_RGB2GRAY )
+img = cv2.cvtColor( x, cv2.COLOR_BGR2RGB )
 img=img.reshape((1,)+img.shape)
-img=img.reshape(img.shape+(1,))
+
 test_datagen = ImageDataGenerator(rescale=1./255)
 m=test_datagen.flow(img,batch_size=1)
 y_pred=model.predict_generator(m,1)
