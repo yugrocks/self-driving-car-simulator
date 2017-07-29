@@ -11,6 +11,7 @@ class Screen:
     def __init__(self):
         self.root = tkinter.Tk()
         self.root.title("Self Driving Vehicle Simulator")
+        self.root.resizable(height=False,width=False)
         self.root.iconbitmap('wheel.ico')
         widthpixels = 700
         heightpixels = 500
