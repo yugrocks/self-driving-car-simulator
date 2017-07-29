@@ -13,12 +13,12 @@ img_channels=1 #1 for grayscale, and 3 for RGB images
 def load_model():
     #load the model
     try:
-        model_file = open('model2.json', 'r')
+        model_file = open('model4.json', 'r')
         loaded_model = model_file.read()
         model_file.close()
         model = model_from_json(loaded_model)
         #load weights into the model
-        model.load_weights("weights2.hdf5")
+        model.load_weights("weights4.hdf5")
         print("Model loaded successfully")
         return model
     except:
@@ -46,6 +46,9 @@ def start_simulation(path, screen):
         rval, img = vc.read()
         if path==0:
             img=cv2.flip(img,1)
+        
+        
+        #img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         screen.display(img)  #display the frame on screen
         img = cv2.cvtColor( img, cv2.COLOR_RGB2GRAY )
         img = cv2.resize(img, (img_colms, img_rows), interpolation = cv2.INTER_AREA)
