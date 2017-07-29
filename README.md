@@ -19,17 +19,17 @@ Requirements: Python 3.5 ,Keras 2.0.2 , Tensorflow 1.2.1 , OpenCV 3.2, numpy 1.1
      It automatically puts a frame in the right folder(class) according to actions taken by user while generating data.     
 
 ## Contents /Scripts:  
-    ### -cnn_train.py :    
+  ### -cnn_train.py :    
         To train the model.    
-    ### -generate_data.py :   
+  ### -generate_data.py :   
         To generate the dataset from random videos.    
-    ### - simulator_gui.py :    
+  ### - simulator_gui.py :    
         The class that provides the GUI for simulator.    
-    ### -drive.py    
+  ### -drive.py    
         The main script that starts the simulator.    
-    ### -model2.json, model4.json :    
+  ### -model2.json, model4.json :    
         The pre trained models on 4 differnt terrains.
-    ### -weights2.hdf5, weights4.hdf5 :    
+  ### -weights2.hdf5, weights4.hdf5 :    
         Weights of the corresponding models.    
 
 # About The Model:    
