@@ -1,5 +1,5 @@
 # self-driving-car-simulator
-The core technology behind Self Driving Cars today. Given the image of a road at a time frame, it can decide where to turn the staring and how much. This is a temporary model. I am working continuously to improve the model and to generalize it to as many different terrains as possible.    
+The core technology behind Self Driving Cars today. Given the image of a road at a time frame, it can decide where to turn the staring and how much. I am working continuously to generalize it to as many different terrains as possible.    
 It uses a Convolutional Neural Network to predict the motion of the steering given the image of a road at a time.  
 
 Requirements: Python 3.5 ,Keras 2.0.2 , Tensorflow 1.2.1 , OpenCV 3.2, numpy 1.11.0   
@@ -40,3 +40,4 @@ Trained using Backpropogation algorithm with stochastic gradint descent.
 ## Accuracies after 10 epochs:    
     -Train acc: 96.4665%    
     -Test acc : 88.5039%     
+It may seem like it has been overfit. But no. It was the test set, which contained some wrong examples.
