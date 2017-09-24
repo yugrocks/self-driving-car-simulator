@@ -50,5 +50,5 @@ Trained using Backpropogation algorithm with stochastic gradint descent.
     -Test acc : 88.5039%     
 It may seem like it has been overfit. But no. It was the test set, which contained some wrong examples.    
 ### For regression based model:    
-    -Train error: 2.0311    
-    -Test error:  2.4532    
+    -Train error: 2.0311  (Mean absolute error)     
+    -Test error:  2.4532   
