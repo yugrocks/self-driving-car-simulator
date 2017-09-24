@@ -6,7 +6,7 @@ Requirements: Python 3.5 ,Keras 2.0.2 , Tensorflow 1.2.1 , OpenCV 3.2, numpy 1.1
 
 ## This approach uses Regression for predicting the angle of steering, and is clearly more successful and accurate than the classification approach which I used before. Regression provides flexibility to the results.    
 ### Regression approach   
-![alt tag](https://raw.githubusercontent.com/yugrocks/self-driving-car-simulator/master/demo23.gif)  
+![alt tag](https://raw.githubusercontent.com/yugrocks/self-driving-car-simulator/master/demo3.gif)  
 ### Classification approach   
 ![alt tag](https://raw.githubusercontent.com/yugrocks/self-driving-car-simulator/master/demo2.gif)   
 
