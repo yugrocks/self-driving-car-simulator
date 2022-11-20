@@ -1,4 +1,6 @@
-# self-driving-car-simulator
+# self-driving-car-simulator<br>
+<a href="https://unisp.tech">Check out for cool projects about drones and AI</a><br>
+
 The core technology behind Self Driving Cars today. Given the image of a road at a time frame, it can decide where to turn the steering and how much. I am working continuously to generalize it to as many different terrains as possible.    
 It uses a Convolutional Neural Network to predict the motion of the steering given the image of a road at a time.  
 
